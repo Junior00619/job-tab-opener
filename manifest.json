@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+    "name": "Job Tab Opener",
+    "version": "1.1.0",
+    "description": "Opens Indeed job listings in new tabs and auto-clicks Apply.",
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "*://*.indeed.com/*"
+    ],
+    "background": {
+      "scripts": ["background.js"]
+    },
+    "browser_action": {
+      "default_title": "Open jobs & auto-apply"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.indeed.com/*"],
+        "js": ["content.js"]
+      },
+      {
+        "matches": ["*://*.indeed.com/viewjob*"],
+        "js": ["indeed_auto_apply.js"],
+        "run_at": "document_idle"
+      }
+    ]
+  }
+  
